@@ -1,0 +1,111 @@
+<!-- ---
+title: Fruit Recognizer
+layout: page
+---
+
+<input id="photo" type="file">
+<div id="results"></div>
+<script type = "module">
+    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
+    
+    async function loaded(reader) {  
+        const app = await client("https://jarif-fruit-recognizer-part-2.hf.space/--replicas/846lx/");
+        const response = await app.predict("/predict", [reader.result]);
+        const label = response['data'][0]['label'];
+        results.innerHTML = `<br/> <img src = "${reader.result}" width="500"> <p>${label}</p>`;
+    }
+    function read() {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => loaded(reader))
+        reader.readAsDataURL(photo.files[0]);
+    }
+    photo.addEventListener('input', read);
+
+    
+</script>
+
+
+ -->
+
+
+
+---
+title: Fruit Recognizer
+layout: page
+---
+
+<!-- HTML structure with additional styling -->
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4; /* Set your desired background color */
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    #container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #photo {
+        margin-bottom: 20px;
+    }
+
+    #results {
+        margin-top: 20px;
+    }
+</style>
+
+<div id="container">
+    <h1>Fruit Recognizer</h1>
+
+    <!-- Input for selecting a photo -->
+    <input id="photo" type="file">
+
+    <!-- Container for displaying results -->
+    <div id="results"></div>
+
+    <!-- JavaScript code -->
+    <script type="module">
+        // Importing Gradio client library
+        import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
+
+        // Function to handle the loaded image
+        async function handleImageLoad(reader) {
+            // Initialize Gradio client
+            const app = await client("https://jarif-fruit-recognizer-part-2.hf.space/--replicas/846lx/");
+
+            // Make prediction request to the Gradio app
+            const response = await app.predict("/predict", [reader.result]);
+
+            // Extract label from the response
+            const label = response['data'][0]['label'];
+
+            // Display results with image and label
+            results.innerHTML = `<br/> <img src="${reader.result}" width="500"> <p>${label}</p>`;
+        }
+
+        // Function to read the selected photo
+        function readSelectedPhoto() {
+            // Create a FileReader object
+            const reader = new FileReader();
+
+            // Add event listener for when the file is loaded
+            reader.addEventListener('load', () => handleImageLoad(reader));
+
+            // Read the selected photo as a data URL
+            reader.readAsDataURL(photo.files[0]);
+        }
+
+        // Add input event listener to the photo input
+        const photo = document.getElementById('photo');
+        const results = document.getElementById('results');
+        photo.addEventListener('input', readSelectedPhoto);
+    </script>
+</div>

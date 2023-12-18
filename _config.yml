@@ -1,0 +1,9 @@
+remote_theme: daviddarnes/alembic@main
+plugins:
+  - jekyll-remote-theme
+
+title: Fruit Recognizer
+description: An Image Classification API that categorizes 20 different types of fruits found around the world.
+
+author:
+  name: Sadik Al Jarif
