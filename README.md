@@ -1,5 +1,3 @@
-# Fruit-Recognizer_2
-
 
 # Fruit-Recognizer
 An image classification model from data collection, cleaning, model training, deployment and API integration. <br/>
