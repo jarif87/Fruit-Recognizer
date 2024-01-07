@@ -1,31 +1,75 @@
----
-title: Fruit Recognizer
-layout: page
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Recognizer</title>
+  <style>
+    body {
+      background-color: skyblue; /* Updated background color to sky blue */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    input {
+      margin: 10px 0;
+      padding: 12px;
+      border: 2px solid #3498db;
+      border-radius: 8px;
+      width: 300px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #results {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
 
 <input id="photo" type="file">
 <div id="results"></div>
-<script type = "module">
+
+<script type="module">
     import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
-    
+
     async function loaded(reader) {  
         const app = await client("https://jarif-fruit-recognizer-part-2.hf.space/--replicas/846lx/");
         const response = await app.predict("/predict", [reader.result]);
         const label = response['data'][0]['label'];
-        results.innerHTML = `<br/> <img src = "${reader.result}" width="500"> <p>${label}</p>`;
+        results.innerHTML = `<br/> <img src="${reader.result}" width="500"> <p>${label}</p>`;
     }
+
     function read() {
         const reader = new FileReader();
-        reader.addEventListener('load', () => loaded(reader))
+        reader.addEventListener('load', () => loaded(reader));
         reader.readAsDataURL(photo.files[0]);
     }
-    photo.addEventListener('input', read);
 
-    
+    photo.addEventListener('input', read);
 </script>
 
-
-
-
-
-
+</body>
+</html>
