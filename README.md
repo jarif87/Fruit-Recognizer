@@ -37,7 +37,7 @@ Details can be found in `Notebooks/Fruit_Recognizer.ipynb`
 
 # Model Deployment
 I deployed to model to HuggingFace Spaces Gradio App. The implementation can be found in `Deployment` folder or [here](https://huggingface.co/spaces/jarif/Fruit_Recognizer_Part_2). <br/>
-<img src = "Deployment/test.png" width="700" height="350">
+<img src = "deployment/test.png" width="700" height="350">
 
 # API integration with GitHub Pages
 The deployed model API is integrated [here](https://jarif87.github.io/Fruit-Recognizer_2/) in GitHub Pages Website. Implementation and other details can be found in `Docs` folder.
