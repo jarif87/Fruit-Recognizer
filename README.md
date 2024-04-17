@@ -40,4 +40,4 @@ I deployed to model to HuggingFace Spaces Gradio App. The implementation can be 
 <img src = "deployment/test.png" width="700" height="350">
 
 # API integration with GitHub Pages
-The deployed model API is integrated [here](https://jarif87.github.io/Fruit-Recognizer_2/) in GitHub Pages Website. Implementation and other details can be found in `Docs` folder.
+The deployed model API is integrated [here](https://jarif87.github.io/Fruit-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in `Docs` folder.
